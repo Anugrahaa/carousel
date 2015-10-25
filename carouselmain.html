@@ -1,0 +1,220 @@
+<html>
+<head>
+	<title>CAROUSEL</title>
+	<style type="text/css">
+		body{
+			overflow: hidden;
+		}
+		 .carousel-img{
+		 	position: absolute;
+		 	left: 10%;
+		 	height: 70%;
+		 	width: 80%;
+		 	border: 0px;
+		 	overflow: hidden;
+		 	border: 0px;
+		 }
+		 .carousel-img .cimg{
+		 	position: absolute;
+		 	top: 0;
+		 	width: 100%;
+		 	display: inline-table;
+
+		 }
+		 .inactive{
+		 	position: absolute;
+		 	left: -100%;
+		 	height: 100%;
+			width: 100%;
+			border: 0px;
+			-webkit-animation: scrollleft 1s;
+			-moz-animation: scrollleft 1s;
+			-o-animation: scrollleft 1s;
+			animation: scrollleft 1s;
+		 }
+
+		 @-webkit-keyframes scrollleft{
+		 	0%{
+		 		left: 0%;
+		 	}
+		 	100%{
+		 		left: -100%;
+		 	}
+		 }
+		 @-moz-keyframes scrollleft{
+		 	0%{
+		 		left: 0%;
+		 	}
+		 	100%{
+		 		left: -100%;
+		 	}
+		 }
+		 @keyframes scrollleft{
+		 	0%{
+		 		left: 0%;
+		 	}
+		 	100%{
+		 		left: -100%;
+		 	}
+		 }
+		 .cimg img{
+		 	height: 100%;
+		 	width: 100%;
+		 }
+		 .active{
+		 	position: absolute;
+			left: 0%;
+			height: 100%;
+			width: 100%;
+			border: 0px;
+			-webkit-animation: scrollleftactive 1s;
+			-moz-animation:scrollleftactive 1s;
+			animation: scrollleftactive 1s;
+		 }
+			
+		 @-webkit-keyframes scrollleftactive{
+		 	0%{
+		 		left:100%;
+		 	}
+		 	100%{
+		 		left: 0%;
+		 	}
+		 }
+
+		 @-moz-keyframes scrollleftactive{
+		 	0%{
+		 		left:100%;
+		 	}
+		 	100%{
+		 		left: 0%;
+		 	}
+		 }
+
+		 @keyframes scrollleftactive{
+		 	0%{
+		 		left:100%;
+		 	}
+		 	100%{
+		 		left: 0%;
+		 	}
+		 }
+
+
+		 .carousel-title{
+		 	position: absolute;
+		 	top: 90%;
+		 	width: 75%;
+		 	left: 12.5%;
+		 	text-align: center;
+		 }
+		 .carousel-text{
+		 	position: absolute;
+		 	top: 70%;
+		 	left: 10%;
+		 	width: 80%;
+		 	background-color: grey;
+		 	color: white;
+		 }
+		 .carousel-text .ctext{
+		 	display: inline-table;
+		 	width: 24.5%;
+		 	border-right: 2px solid white;
+		 	position: relative;
+		 	right: 0%;
+		 	text-align: justify;
+		 }
+		 .carousel-text .ctext:hover{
+			cursor: pointer;
+		 }
+
+		 .carousel-text .highlight{
+			background-color: white;
+			border-bottom: 5px red solid;
+			color: black;
+		 }
+	</style>
+	<script src="jquery-1.11.3.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		carouselimg();
+		var i=1;//variable that points to current frame
+		var to; //variable that holds timeout of carouselimg function
+		function carouselimg () //function that toggles classes of carousel image, text and header
+		{
+				console.log(i);
+					$(".cimg").removeClass("active");
+					$(".cimg").addClass("inactive");
+					$(".ctitle").removeClass("active");
+					$(".ctitle").addClass("inactive");
+					$(".ctext").removeClass("highlight");
+
+				$("#cimg"+i).removeClass("inactive");
+				$("#cimg"+i).addClass("active");
+				$("#ctitle"+i).removeClass("inactive");
+				$("#ctitle"+i).addClass("active");
+				$("#ctext"+i).addClass("highlight");
+					i=i+1;
+					if(i>4) i=1;
+				to=setTimeout(carouselimg,5000);
+				
+			}
+
+			function ctextclicked (textid) {
+				i=textid;
+				clearTimeout(to);//to maintain speed of 5s per frame
+				carouselimg();
+				}
+			
+	</script>
+</head>
+<body>
+	<div class="carousel-title">
+		<!--THE TITLE IS PLACED AT THE BOTTOM OF THE SCREEN -->
+		<div id="ctitle1" class="ctitle active">
+			<h2>Kallis appointed KKR coach1</h2>
+		</div>
+		<div id="ctitle2" class="ctitle inactive">
+			<h2>Kallis appointed KKR coach2</h2>
+		</div>
+		<div id="ctitle3" class="ctitle inactive">
+			 <h2>Kallis appointed KKR coach3</h2>
+		</div>
+		<div id="ctitle4" class="ctitle inactive">
+			<h2>Kallis appointed KKR coach4</h2>
+		</div>
+	</div>
+	<div class="carousel-img">
+		<!--CAROUSEL IMAGES: MOVE WITH TRANSITION-->
+		<div id="cimg1" class="cimg active">
+			<img src="example.png">
+		</div>
+		<div id="cimg2" class="cimg inactive">
+			<img src="example.png">
+		</div>
+		<div id="cimg3" class="cimg inactive">
+			<img src="example.png">
+		</div>
+		<div id="cimg4" class="cimg inactive">
+			<img src="example.png">
+		</div>
+	</div>
+	<div class="carousel-text">
+		<!--CAROUSEL TEXT: ONCLICK, GOES TO THE PARTICULAR IMAGE-->
+		<div id="ctext1" class="ctext highlight" onclick="ctextclicked(1)">
+			<h3>Kallis appointed KKR coach1</h3>
+			<p>Retired South African all-rounder Jacques Kallis  has replaced Trevor Bayliss as head of Kolkata Knight Riders, a statement from...</p>
+		</div>
+		<div id="ctext2" class="ctext" onclick="ctextclicked(2)">
+			<h3>Kallis appointed KKR coach2</h3>
+			<p>Retired South African all-rounder Jacques Kallis  has replaced Trevor Bayliss as head of Kolkata Knight Riders, a statement from...</p>
+		</div>
+		<div id="ctext3" class="ctext" onclick="ctextclicked(3)">
+			<h3>Kallis appointed KKR coach3</h3>
+			<p>Retired South African all-rounder Jacques Kallis  has replaced Trevor Bayliss as head of Kolkata Knight Riders, a statement from...</p>
+		</div>
+		<div id="ctext4" class="ctext" onclick="ctextclicked(4)" style="border-right:0px;">
+			<h3>Kallis appointed KKR coach4</h3>
+			<p>Retired South African all-rounder Jacques Kallis  has replaced Trevor Bayliss as head of Kolkata Knight Riders, a statement from...</p>
+		</div>
+	</div>
+</body>
+</html>
