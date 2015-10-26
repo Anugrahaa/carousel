@@ -223,6 +223,19 @@
 		 		border-bottom: 5px red solid;
 		 	}
 		 }
+		 
+		 .pointer-triangle{
+			width: 0px;
+			height: 0px;
+			border-top: 8px solid black;
+			border-left: 8px solid black;
+			border-bottom: 8px solid transparent;
+			border-right: 8px solid transparent; 
+			position: absolute;
+			top: 71%;
+			left: 10%;
+		}
+		
 	</style>
 	<script src="jquery-1.11.3.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
@@ -239,6 +252,7 @@
 				$("#cimg"+i).removeClass("inactive");
 				$("#cimg"+i).addClass("active");
 				$("#ctext"+i).addClass("highlight");
+				$(".pointer-triangle").css({left: ((i-1)*20+10)+"%"});
 					i=i+1;
 					if(i>4) i=1;
 				to=setTimeout(carouselimg,5000);
@@ -287,6 +301,8 @@
 			<h3>Kallis appointed KKR coach4</h3>
 			<p>Retired South African all-rounder Jacques Kallis  has replaced Trevor Bayliss as head of Kolkata Knight Riders, a statement from...</p>
 		</div>
+	</div>
+	<div class="pointer-triangle"><!--THE TRIANGLE IN THE ACTIVE ELEMENT-->
 	</div>
 </body>
 </html>
